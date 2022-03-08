@@ -1,0 +1,8 @@
+{
+  "appName": "Satellite Tracker",
+  "port": "Port",
+  "inputRequired": "Please input",
+  "start": "Start",
+  "stop": "Stop",
+  "useCorrectPort": "Port number should between 1024 & 65535"
+}

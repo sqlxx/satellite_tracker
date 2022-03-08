@@ -1,0 +1,8 @@
+{
+  "appName": "卫星追踪",
+  "port": "端口",
+  "inputRequired": "请输入",
+  "start": "启动",
+  "stop": "停止",
+  "useCorrectPort": "端口号是介于1024和65535之间的数字"
+}
