@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:satellite_tracker/models/tcp_server_model.dart';
 
@@ -22,6 +24,14 @@ class TcpServer {
 
   _onConnect(Socket client) {
     _serverModel.statusText = 'Connected from ${client.remoteAddress.address}:${client.remotePort}';
+    client.listen((Uint8List event) {
+      String str = String.fromCharCodes(event);
+      _serverModel.statusText = 'Received: $str';
+    }, onDone: () {
+      _serverModel.statusText = 'Disconnected from ${client.remoteAddress.address}:${client.remotePort}';
+    }, onError: (Object error, StackTrace stackTrace) {
+      _serverModel.statusText = 'Error: $error, $stackTrace';
+    });
   }
 
   Future<void> stop() async {
