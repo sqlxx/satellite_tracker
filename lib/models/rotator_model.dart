@@ -1,7 +1,6 @@
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:satellite_tracker/_utils/easy_notifier.dart';
 
-// Storing app configuration data
 class RotatorModel extends EasyNotifier {
   List<SerialPort> _availableSerialPorts = [];
   SerialPort? _connectedSerialPort;
@@ -12,6 +11,9 @@ class RotatorModel extends EasyNotifier {
   double _currentAzimuth = 5;
   double _currentElevation = 15;
   bool _tracking = false;
+
+  int _horizontalSpeed = 1; //ms per degree
+  int _verticalSpeed = 1; //ms per degree
 
   set availableSerialPorts(List<SerialPort> value) {
     notify(() => _availableSerialPorts = value);
@@ -54,4 +56,16 @@ class RotatorModel extends EasyNotifier {
   }
 
   bool get tracking => _tracking;
+
+  set verticalSpeed(value) {
+    notify(() => _verticalSpeed = value);
+  }
+
+  int get verticalSpeed => _verticalSpeed;
+
+  set horizontalSpeed(value) {
+    notify(() => _horizontalSpeed = value);
+  }
+
+  int get horizontalSpeed => _horizontalSpeed;
 }

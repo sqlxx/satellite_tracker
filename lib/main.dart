@@ -67,16 +67,19 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).appName),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            TcpServerForm(),
-            SizedBox(height: 20),
-            RotatorConfigForm(),
-            SizedBox(height: 50),
-            RotatorControlPanel()
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              TcpServerForm(),
+              SizedBox(height: 20),
+              RotatorConfigForm(),
+              SizedBox(height: 50),
+              RotatorControlPanel()
+            ],
+          ),
         ),
       ),
     );

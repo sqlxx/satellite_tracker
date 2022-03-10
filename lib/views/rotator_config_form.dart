@@ -35,7 +35,8 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
     return Form(
       child: Row(
         children: [
-          Text(S.of(context).serialPortLists, style: Theme.of(context).textTheme.titleLarge),
+          Text(S.of(context).serialPortLists, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(width: 15),
           SizedBox(
             width: 230,
             child: DropdownButtonFormField(

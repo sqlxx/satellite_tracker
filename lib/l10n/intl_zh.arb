@@ -5,7 +5,7 @@
   "start": "启动",
   "stop": "停止",
   "useCorrectPort": "端口号是介于1024和65535之间的数字",
-  "serialPortLists": "串口:",
+  "serialPortLists": "串口",
   "connect": "连接",
   "disconnect": "断开",
   "startTracking": "开始追踪",
@@ -19,5 +19,15 @@
   "down": "下",
   "left": "左",
   "right": "右",
-  "reset": "重置"
+  "reset": "重置",
+  "begin": "起始",
+  "end": "终止",
+  "horizontalSpeed": "水平速率",
+  "horizontalReset": "水平重置",
+  "verticalSpeed": "垂直速率",
+  "verticalReset": "垂直重置",
+  "azimuthRange": "方位角范围",
+  "elevationRange": "仰角范围",
+  "startCalibrate": "开始校准",
+  "status": "状态: "
 }

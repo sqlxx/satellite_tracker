@@ -4,6 +4,7 @@ import 'package:satellite_tracker/_widgets/mixins/serial_connecion_mixin.dart';
 import 'package:satellite_tracker/models/rotator_model.dart';
 
 import '../generated/l10n.dart';
+import 'calibration_dialog.dart';
 
 class CommandPanel extends StatefulWidget {
   const CommandPanel({Key? key}) : super(key: key);
@@ -31,7 +32,16 @@ class _CommandPanelState extends State<CommandPanel> with SerialConnectionMixin 
             }),
             child: Text(S.of(context).setZero)),
         const SizedBox(height: 15),
-        ElevatedButton(onPressed: null, child: Text(S.of(context).calibrate))
+        ElevatedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const CalibrationDialog();
+                  });
+              // Start the server
+            },
+            child: Text(S.of(context).calibrate)),
       ],
     );
   }

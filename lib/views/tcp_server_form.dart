@@ -39,7 +39,8 @@ class _TcpServerFormState extends State<TcpServerForm> {
     return Form(
         key: _formKey,
         child: Row(children: [
-          Text(S.of(context).port + ": ", style: Theme.of(context).textTheme.titleLarge),
+          Text(S.of(context).port, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(width: 15),
           SizedBox(
               width: 80,
               child: TextFormField(
@@ -61,35 +62,24 @@ class _TcpServerFormState extends State<TcpServerForm> {
                   return null;
                 },
               )),
-          ElevatedButton(
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  if (!_serverModel.serving) {
-                    _serverModel.port = int.tryParse(_portController.text);
-                    await StartSocketCommand().run();
-                  } else {
-                    await StopSocketCommand().run();
-                  }
-                  //   showDialog(
-                  //       context: context,
-                  //       builder: (BuildContext context) {
-                  //         return AlertDialog(
-                  //             title: const Text('Server Started'),
-                  //             content: Text('TCP Server started on ${_portController.text}'),
-                  //             actions: <Widget>[
-                  //               TextButton(
-                  //                 onPressed: () {
-                  //                   Navigator.pop(context);
-                  //                 },
-                  //                 child: const Text('OK'),
-                  //               ),
-                  //             ]);
-                  //       });
-                  //   // Start the server
-                }
-              },
-              child: Text(_serverModel.serving ? S.of(context).stop : S.of(context).start)),
-          Text("Command: ${_serverModel.statusText}"),
+          const SizedBox(width: 10),
+          SizedBox(
+              width: 80,
+              child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      if (!_serverModel.serving) {
+                        _serverModel.port = int.tryParse(_portController.text);
+                        await StartSocketCommand().run();
+                      } else {
+                        await StopSocketCommand().run();
+                      }
+                    }
+                  },
+                  child: Text(_serverModel.serving ? S.of(context).stop : S.of(context).start))),
+          const SizedBox(width: 10),
+          Text(S.of(context).status, style: Theme.of(context).textTheme.titleSmall),
+          Text(_serverModel.statusText),
         ]));
   }
 }

@@ -22,27 +22,39 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Satellite Tracker"),
-        "autoCalibrate": MessageLookupByLibrary.simpleMessage("Auto Calibrate"),
         "azimuth": MessageLookupByLibrary.simpleMessage("Azimuth"),
+        "azimuthRange": MessageLookupByLibrary.simpleMessage("Azimuth Range"),
+        "begin": MessageLookupByLibrary.simpleMessage("Begin"),
         "calibrate": MessageLookupByLibrary.simpleMessage("Calibrate"),
         "connect": MessageLookupByLibrary.simpleMessage("Connect"),
         "disconnect": MessageLookupByLibrary.simpleMessage("Disconnect"),
-        "down": MessageLookupByLibrary.simpleMessage("DOWN"),
+        "down": MessageLookupByLibrary.simpleMessage("Down"),
         "elevation": MessageLookupByLibrary.simpleMessage("Elevation"),
+        "elevationRange":
+            MessageLookupByLibrary.simpleMessage("Elevation Range"),
+        "end": MessageLookupByLibrary.simpleMessage("End"),
+        "horizontalReset":
+            MessageLookupByLibrary.simpleMessage("Horizontal Reset"),
+        "horizontalSpeed":
+            MessageLookupByLibrary.simpleMessage("Horizontal Speed"),
         "inputRequired": MessageLookupByLibrary.simpleMessage("Please input"),
-        "left": MessageLookupByLibrary.simpleMessage("LEFT"),
+        "left": MessageLookupByLibrary.simpleMessage("Left"),
         "port": MessageLookupByLibrary.simpleMessage("Port"),
-        "reset": MessageLookupByLibrary.simpleMessage("RESET"),
-        "right": MessageLookupByLibrary.simpleMessage("RIGHT"),
-        "serialPortLists":
-            MessageLookupByLibrary.simpleMessage("Serial Ports: "),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
+        "right": MessageLookupByLibrary.simpleMessage("Right"),
+        "serialPortLists": MessageLookupByLibrary.simpleMessage("Serial Ports"),
         "setZero": MessageLookupByLibrary.simpleMessage("Set Zero"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "startCalibrate":
+            MessageLookupByLibrary.simpleMessage("Start Calibrate"),
         "startTracking": MessageLookupByLibrary.simpleMessage("Start Tracking"),
+        "status": MessageLookupByLibrary.simpleMessage("Status: "),
         "stop": MessageLookupByLibrary.simpleMessage("Stop"),
         "stopTracking": MessageLookupByLibrary.simpleMessage("Stop Tracking"),
-        "up": MessageLookupByLibrary.simpleMessage("UP"),
+        "up": MessageLookupByLibrary.simpleMessage("Up"),
         "useCorrectPort": MessageLookupByLibrary.simpleMessage(
-            "Port number should between 1024 & 65535")
+            "Port number should between 1024 & 65535"),
+        "verticalReset": MessageLookupByLibrary.simpleMessage("Vertical Reset"),
+        "verticalSpeed": MessageLookupByLibrary.simpleMessage("Vertical Speed")
       };
 }
