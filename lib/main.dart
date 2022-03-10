@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:satellite_tracker/models/app_model.dart';
+import 'package:satellite_tracker/models/rotator_model.dart';
 import 'package:satellite_tracker/models/tcp_server_model.dart';
+import 'package:satellite_tracker/services/serial_service.dart';
 import 'package:satellite_tracker/services/tcp_server.dart';
+import 'package:satellite_tracker/views/rotator_config_form.dart';
+import 'package:satellite_tracker/views/rotator_control_panel.dart';
 import 'package:satellite_tracker/views/tcp_server_form.dart';
 import "package:satellite_tracker/commands/commands.dart" as commands;
 
@@ -11,14 +14,15 @@ import 'generated/l10n.dart';
 import 'views/tcp_server_form.dart';
 
 void main() {
-  AppModel appModel = AppModel();
+  RotatorModel rotatorModel = RotatorModel();
   TcpServerModel tcpServerModel = TcpServerModel();
-  TcpServer tcpServer = TcpServer(tcpServerModel);
+  TcpServer tcpServer = TcpServer();
+  SerialService serialService = SerialService();
+
   runApp(MultiProvider(providers: [
     Provider.value(value: tcpServer),
-    // App Model - Stores data related to global settings or app modes
-    ChangeNotifierProvider.value(value: appModel),
-    // BooksModel - Stores data about the content in the app
+    Provider.value(value: serialService),
+    ChangeNotifierProvider.value(value: rotatorModel),
     ChangeNotifierProvider.value(value: tcpServerModel),
   ], child: const SatelliteTrackerApp()));
 }
@@ -66,10 +70,12 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              children: const [TcpServerForm()],
-            ),
+          children: const [
+            TcpServerForm(),
+            SizedBox(height: 20),
+            RotatorConfigForm(),
+            SizedBox(height: 50),
+            RotatorControlPanel()
           ],
         ),
       ),

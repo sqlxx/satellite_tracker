@@ -22,10 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Satellite Tracker"),
+        "autoCalibrate": MessageLookupByLibrary.simpleMessage("Auto Calibrate"),
+        "azimuth": MessageLookupByLibrary.simpleMessage("Azimuth"),
+        "calibrate": MessageLookupByLibrary.simpleMessage("Calibrate"),
+        "connect": MessageLookupByLibrary.simpleMessage("Connect"),
+        "disconnect": MessageLookupByLibrary.simpleMessage("Disconnect"),
+        "down": MessageLookupByLibrary.simpleMessage("DOWN"),
+        "elevation": MessageLookupByLibrary.simpleMessage("Elevation"),
         "inputRequired": MessageLookupByLibrary.simpleMessage("Please input"),
+        "left": MessageLookupByLibrary.simpleMessage("LEFT"),
         "port": MessageLookupByLibrary.simpleMessage("Port"),
+        "reset": MessageLookupByLibrary.simpleMessage("RESET"),
+        "right": MessageLookupByLibrary.simpleMessage("RIGHT"),
+        "serialPortLists":
+            MessageLookupByLibrary.simpleMessage("Serial Ports: "),
+        "setZero": MessageLookupByLibrary.simpleMessage("Set Zero"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "startTracking": MessageLookupByLibrary.simpleMessage("Start Tracking"),
         "stop": MessageLookupByLibrary.simpleMessage("Stop"),
+        "stopTracking": MessageLookupByLibrary.simpleMessage("Stop Tracking"),
+        "up": MessageLookupByLibrary.simpleMessage("UP"),
         "useCorrectPort": MessageLookupByLibrary.simpleMessage(
             "Port number should between 1024 & 65535")
       };

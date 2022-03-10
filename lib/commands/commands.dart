@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:satellite_tracker/services/serial_service.dart';
 import 'package:satellite_tracker/services/tcp_server.dart';
 
-import '../models/app_model.dart';
+import '../models/rotator_model.dart';
+import '../models/tcp_server_model.dart';
 
 BuildContext? _buildContext;
 
@@ -15,13 +17,14 @@ void setContext(BuildContext buildContext) {
 }
 
 class BaseCommand {
-
   T getProvided<T>() {
     assert(hasContext, "You must call setContext first");
     return _buildContext!.read();
   }
 
   TcpServer get tcpServer => getProvided();
-  AppModel get appModel => getProvided();
-}
+  SerialService get serialService => getProvided();
 
+  RotatorModel get rotatorModel => getProvided();
+  TcpServerModel get tcpServerModel => getProvided();
+}

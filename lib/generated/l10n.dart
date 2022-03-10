@@ -109,6 +109,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Serial Ports: `
+  String get serialPortLists {
+    return Intl.message(
+      'Serial Ports: ',
+      name: 'serialPortLists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect`
+  String get connect {
+    return Intl.message(
+      'Connect',
+      name: 'connect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disconnect`
+  String get disconnect {
+    return Intl.message(
+      'Disconnect',
+      name: 'disconnect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Tracking`
+  String get startTracking {
+    return Intl.message(
+      'Start Tracking',
+      name: 'startTracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stop Tracking`
+  String get stopTracking {
+    return Intl.message(
+      'Stop Tracking',
+      name: 'stopTracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Azimuth`
+  String get azimuth {
+    return Intl.message(
+      'Azimuth',
+      name: 'azimuth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Elevation`
+  String get elevation {
+    return Intl.message(
+      'Elevation',
+      name: 'elevation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set Zero`
+  String get setZero {
+    return Intl.message(
+      'Set Zero',
+      name: 'setZero',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calibrate`
+  String get calibrate {
+    return Intl.message(
+      'Calibrate',
+      name: 'calibrate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto Calibrate`
+  String get autoCalibrate {
+    return Intl.message(
+      'Auto Calibrate',
+      name: 'autoCalibrate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UP`
+  String get up {
+    return Intl.message(
+      'UP',
+      name: 'up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DOWN`
+  String get down {
+    return Intl.message(
+      'DOWN',
+      name: 'down',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LEFT`
+  String get left {
+    return Intl.message(
+      'LEFT',
+      name: 'left',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RIGHT`
+  String get right {
+    return Intl.message(
+      'RIGHT',
+      name: 'right',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RESET`
+  String get reset {
+    return Intl.message(
+      'RESET',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

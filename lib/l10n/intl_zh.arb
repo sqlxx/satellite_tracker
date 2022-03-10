@@ -4,5 +4,20 @@
   "inputRequired": "请输入",
   "start": "启动",
   "stop": "停止",
-  "useCorrectPort": "端口号是介于1024和65535之间的数字"
+  "useCorrectPort": "端口号是介于1024和65535之间的数字",
+  "serialPortLists": "串口:",
+  "connect": "连接",
+  "disconnect": "断开",
+  "startTracking": "开始追踪",
+  "stopTracking": "停止追踪",
+  "azimuth": "方位角",
+  "elevation": "仰角",
+  "setZero": "设置零点",
+  "calibration": "校准",
+  "autoCalibration": "自动校准",
+  "up": "上",
+  "down": "下",
+  "left": "左",
+  "right": "右",
+  "reset": "重置"
 }

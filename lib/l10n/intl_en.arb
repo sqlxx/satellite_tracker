@@ -4,5 +4,20 @@
   "inputRequired": "Please input",
   "start": "Start",
   "stop": "Stop",
-  "useCorrectPort": "Port number should between 1024 & 65535"
+  "useCorrectPort": "Port number should between 1024 & 65535",
+  "serialPortLists": "Serial Ports: ",
+  "connect": "Connect",
+  "disconnect": "Disconnect",
+  "startTracking": "Start Tracking",
+  "stopTracking": "Stop Tracking",
+  "azimuth": "Azimuth",
+  "elevation": "Elevation",
+  "setZero": "Set Zero",
+  "calibrate": "Calibrate",
+  "autoCalibrate": "Auto Calibrate",
+  "up": "UP",
+  "down": "DOWN",
+  "left": "LEFT",
+  "right": "RIGHT",
+  "reset": "RESET"
 }
