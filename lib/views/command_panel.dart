@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:satellite_tracker/_widgets/mixins/serial_connecion_mixin.dart';
+import 'package:satellite_tracker/_widgets/mixins/serial_connection_mixin.dart';
 import 'package:satellite_tracker/models/rotator_model.dart';
 
 import '../generated/l10n.dart';

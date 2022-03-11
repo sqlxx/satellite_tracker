@@ -33,15 +33,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "elevationRange":
             MessageLookupByLibrary.simpleMessage("Elevation Range"),
         "end": MessageLookupByLibrary.simpleMessage("End"),
+        "fillIn": MessageLookupByLibrary.simpleMessage("Please fill in"),
         "horizontalReset":
             MessageLookupByLibrary.simpleMessage("Horizontal Reset"),
         "horizontalSpeed":
             MessageLookupByLibrary.simpleMessage("Horizontal Speed"),
         "inputRequired": MessageLookupByLibrary.simpleMessage("Please input"),
+        "invalidValue": MessageLookupByLibrary.simpleMessage("Invalid Value"),
         "left": MessageLookupByLibrary.simpleMessage("Left"),
+        "outOfRange": MessageLookupByLibrary.simpleMessage("Out of Range"),
         "port": MessageLookupByLibrary.simpleMessage("Port"),
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "right": MessageLookupByLibrary.simpleMessage("Right"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "serialPortLists": MessageLookupByLibrary.simpleMessage("Serial Ports"),
         "setZero": MessageLookupByLibrary.simpleMessage("Set Zero"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),

@@ -10,6 +10,13 @@ class RotatorModel extends EasyNotifier {
 
   double _currentAzimuth = 5;
   double _currentElevation = 15;
+
+  int _azimuthBegin = 5;
+  int _azimuthEnd = 355;
+
+  int _elevationBegin = 15;
+  int _elevationEnd = 85;
+
   bool _tracking = false;
 
   int _horizontalSpeed = 1; //ms per degree
@@ -57,15 +64,39 @@ class RotatorModel extends EasyNotifier {
 
   bool get tracking => _tracking;
 
-  set verticalSpeed(value) {
+  set verticalSpeed(int value) {
     notify(() => _verticalSpeed = value);
   }
 
   int get verticalSpeed => _verticalSpeed;
 
-  set horizontalSpeed(value) {
+  set horizontalSpeed(int value) {
     notify(() => _horizontalSpeed = value);
   }
 
   int get horizontalSpeed => _horizontalSpeed;
+
+  int get azimuthBegin => _azimuthBegin;
+  int get azimuthEnd => _azimuthEnd;
+  int get azimuthRange => _azimuthEnd - _azimuthBegin;
+
+  int get elevationBegin => _elevationBegin;
+  int get elevationEnd => _elevationEnd;
+  int get elevationRange => _elevationEnd - _elevationBegin;
+
+  set azimuthBegin(int value) {
+    notify(() => _azimuthBegin = value);
+  }
+
+  set azimuthEnd(int value) {
+    notify(() => _azimuthEnd = value);
+  }
+
+  set elevationBegin(int value) {
+    notify(() => _elevationBegin = value);
+  }
+
+  set elevationEnd(int value) {
+    notify(() => _elevationEnd = value);
+  }
 }

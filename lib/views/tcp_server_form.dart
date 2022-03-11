@@ -30,10 +30,11 @@ class _TcpServerFormState extends State<TcpServerForm> {
     super.dispose();
   }
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    TcpServerModel _serverModel = context.watch<TcpServerModel>();
+    TcpServerModel _serverModel = context.watch();
     _portController.text = _serverModel.port.toString();
 
     return Form(

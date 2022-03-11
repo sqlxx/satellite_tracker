@@ -349,6 +349,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out of Range`
+  String get outOfRange {
+    return Intl.message(
+      'Out of Range',
+      name: 'outOfRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Value`
+  String get invalidValue {
+    return Intl.message(
+      'Invalid Value',
+      name: 'invalidValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill in`
+  String get fillIn {
+    return Intl.message(
+      'Please fill in',
+      name: 'fillIn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

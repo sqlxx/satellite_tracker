@@ -10,6 +10,7 @@ import 'package:satellite_tracker/views/rotator_control_panel.dart';
 import 'package:satellite_tracker/views/tcp_server_form.dart';
 import "package:satellite_tracker/commands/commands.dart" as commands;
 
+import 'commands/load_preference_command.dart';
 import 'generated/l10n.dart';
 import 'views/tcp_server_form.dart';
 
@@ -18,6 +19,9 @@ void main() {
   TcpServerModel tcpServerModel = TcpServerModel();
   TcpServer tcpServer = TcpServer();
   SerialService serialService = SerialService();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  LoadPreferenceCommand().run();
 
   runApp(MultiProvider(providers: [
     Provider.value(value: tcpServer),
@@ -76,7 +80,7 @@ class HomePage extends StatelessWidget {
               TcpServerForm(),
               SizedBox(height: 20),
               RotatorConfigForm(),
-              SizedBox(height: 50),
+              SizedBox(height: 20),
               RotatorControlPanel()
             ],
           ),

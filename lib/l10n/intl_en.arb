@@ -28,5 +28,9 @@
   "azimuthRange": "Azimuth Range",
   "elevationRange": "Elevation Range",
   "startCalibrate": "Start Calibrate",
-  "status": "Status: "
+  "status": "Status: ",
+  "save": "Save",
+  "outOfRange": "Out of Range",
+  "invalidValue": "Invalid Value",
+  "fillIn": "Please fill in"
 }

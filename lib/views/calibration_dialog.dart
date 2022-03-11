@@ -13,7 +13,8 @@ class CalibrationDialog extends StatelessWidget {
       insetPadding: const EdgeInsets.all(30),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(children: const [CalibrationForm(Mode.azimuth), CalibrationForm(Mode.elevation)]),
+        child: Column(
+            children: const [CalibrationForm(Mode.azimuth), SizedBox(height: 30), CalibrationForm(Mode.elevation)]),
       ),
     );
   }

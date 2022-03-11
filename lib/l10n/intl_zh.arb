@@ -29,5 +29,9 @@
   "azimuthRange": "方位角范围",
   "elevationRange": "仰角范围",
   "startCalibrate": "开始校准",
-  "status": "状态: "
+  "status": "状态: ",
+  "save": "保存",
+  "outOfRange": "超出范围",
+  "invalidValue": "无效值",
+  "fillIn": "请填写"
 }
