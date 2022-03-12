@@ -1,5 +1,5 @@
 {
-  "appName": "卫星追踪",
+  "appName": "卫星追踪（BG5AHE）",
   "port": "端口",
   "inputRequired": "请输入",
   "start": "启动",
@@ -12,9 +12,9 @@
   "stopTracking": "停止追踪",
   "azimuth": "方位角",
   "elevation": "仰角",
-  "setZero": "设置零点",
-  "calibration": "校准",
-  "autoCalibration": "自动校准",
+  "setOrigin": "设置原点",
+  "backToOrigin": "回原点",
+  "calibrate": "校准",
   "up": "上",
   "down": "下",
   "left": "左",
@@ -33,5 +33,7 @@
   "save": "保存",
   "outOfRange": "超出范围",
   "invalidValue": "无效值",
-  "fillIn": "请填写"
+  "fillIn": "请填写",
+  "isInOrigin": "已回到原点?",
+  "ok": "确定"
 }

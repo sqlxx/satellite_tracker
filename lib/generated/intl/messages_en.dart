@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -21,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appName": MessageLookupByLibrary.simpleMessage("Satellite Tracker"),
+        "appName":
+            MessageLookupByLibrary.simpleMessage("Satellite Tracker (BG5AHE)"),
         "azimuth": MessageLookupByLibrary.simpleMessage("Azimuth"),
         "azimuthRange": MessageLookupByLibrary.simpleMessage("Azimuth Range"),
+        "backToOrigin": MessageLookupByLibrary.simpleMessage("Back to Origin"),
         "begin": MessageLookupByLibrary.simpleMessage("Begin"),
         "calibrate": MessageLookupByLibrary.simpleMessage("Calibrate"),
         "connect": MessageLookupByLibrary.simpleMessage("Connect"),
@@ -40,14 +43,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Horizontal Speed"),
         "inputRequired": MessageLookupByLibrary.simpleMessage("Please input"),
         "invalidValue": MessageLookupByLibrary.simpleMessage("Invalid Value"),
+        "isInOrigin":
+            MessageLookupByLibrary.simpleMessage("Is stopped in in Origin?"),
         "left": MessageLookupByLibrary.simpleMessage("Left"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "outOfRange": MessageLookupByLibrary.simpleMessage("Out of Range"),
         "port": MessageLookupByLibrary.simpleMessage("Port"),
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "right": MessageLookupByLibrary.simpleMessage("Right"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "serialPortLists": MessageLookupByLibrary.simpleMessage("Serial Ports"),
-        "setZero": MessageLookupByLibrary.simpleMessage("Set Zero"),
+        "setOrigin": MessageLookupByLibrary.simpleMessage("Set Origin"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "startCalibrate":
             MessageLookupByLibrary.simpleMessage("Start Calibrate"),

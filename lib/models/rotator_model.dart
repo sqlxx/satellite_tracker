@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:satellite_tracker/_utils/easy_notifier.dart';
+import 'package:satellite_tracker/views/calibration_form.dart';
 
 class RotatorModel extends EasyNotifier {
   List<SerialPort> _availableSerialPorts = [];
@@ -35,6 +37,9 @@ class RotatorModel extends EasyNotifier {
   }
 
   SerialPort? get connectedSerialPort => _connectedSerialPort;
+
+  bool get isConnected =>
+      _connectedSerialPort != null && _connectedSerialPort!.isOpen;
 
   set rotatorAddr(int value) {
     notify(() => _rotatorAddr = value);
@@ -109,4 +114,10 @@ class RotatorModel extends EasyNotifier {
   }
 
   DateTime get moveStartTime => _moveStart;
+
+  void setCurrentAsOrigin() {
+    currentAzimuth = azimuthBegin * 1.0;
+    currentElevation = elevationBegin * 1.0;
+    debugPrint("Azimuth $currentAzimuth, Elevation $currentElevation");
+  }
 }

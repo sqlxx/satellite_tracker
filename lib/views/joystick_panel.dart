@@ -28,23 +28,23 @@ class _JoystickPanelState extends State<JoystickPanel> with SerialConnectionMixi
         mainAxisSpacing: 5,
         children: [
           const SizedBox(width: 10),
-          ElevatedButton(onPressed: whenConnected(() => {_rotatePanTilt(Direction.up)}), child: Text(S.of(context).up)),
+          ElevatedButton(onPressed: whenConnected(() => {_rotatePanTilt(RotatorAction.up)}), child: Text(S.of(context).up)),
           const SizedBox(width: 10),
           ElevatedButton(
-              onPressed: whenConnected(() => {_rotatePanTilt(Direction.left)}), child: Text(S.of(context).left)),
-          ElevatedButton(onPressed: whenConnected(() => {_rotatePanTilt(Direction.stop)}), child: Text(S.of(context).stop)),
+              onPressed: whenConnected(() => {_rotatePanTilt(RotatorAction.left)}), child: Text(S.of(context).left)),
+          ElevatedButton(onPressed: whenConnected(() => {_rotatePanTilt(RotatorAction.stop)}), child: Text(S.of(context).stop)),
           ElevatedButton(
-              onPressed: whenConnected(() => {_rotatePanTilt(Direction.right)}), child: Text(S.of(context).right)),
+              onPressed: whenConnected(() => {_rotatePanTilt(RotatorAction.right)}), child: Text(S.of(context).right)),
           const SizedBox(width: 10),
           ElevatedButton(
-              onPressed: whenConnected(() => {_rotatePanTilt(Direction.down)}), child: Text(S.of(context).down)),
+              onPressed: whenConnected(() => {_rotatePanTilt(RotatorAction.down)}), child: Text(S.of(context).down)),
           const SizedBox(width: 10),
         ],
       ),
     );
   }
 
-  void _rotatePanTilt(Direction direction) {
+  void _rotatePanTilt(RotatorAction direction) {
     RotatePanTiltCommand().run(direction);
   }
 

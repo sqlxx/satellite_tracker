@@ -18,7 +18,7 @@ class SerialService {
       SerialPort sp = SerialPort(e);
       debugPrint(
           'address: ${sp.address}, busNumber: ${sp.busNumber}, desc: ${sp.description}, deviceNum: ${sp.deviceNumber}, '
-          'manufacturer: ${sp.manufacturer}, name: ${sp.name}');
+          'manufacturer: ${sp.manufacturer}, name: ${sp.name}, transport: ${sp.transport}');
       return sp;
     }).toList();
   }
@@ -34,7 +34,6 @@ class SerialService {
       config.parity = SerialPortParity.none;
       config.stopBits = 1;
       serialPort.config = config;
-      config.dispose();
     }
 
     return success;
@@ -52,7 +51,7 @@ class SerialService {
   void reset() {}
 
   bool rotateLeft(SerialPort serialPort) {
-    return _sendCommand(serialPort, [0xFF, 0x01, 0x00, 0x04, 0x3F, 0x00, 0x04]);
+    return _sendCommand(serialPort, [0xFF, 0x01, 0x00, 0x04, 0xff, 0x00, 0x04]);
   }
 
   bool rotateRight(SerialPort serialPort) {

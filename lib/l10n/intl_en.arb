@@ -1,5 +1,5 @@
 {
-  "appName": "Satellite Tracker",
+  "appName": "Satellite Tracker (BG5AHE)",
   "port": "Port",
   "inputRequired": "Please input",
   "start": "Start",
@@ -12,7 +12,8 @@
   "stopTracking": "Stop Tracking",
   "azimuth": "Azimuth",
   "elevation": "Elevation",
-  "setZero": "Set Zero",
+  "setOrigin": "Set Origin",
+  "backToOrigin": "Back to Origin",
   "calibrate": "Calibrate",
   "up": "Up",
   "down": "Down",
@@ -32,5 +33,7 @@
   "save": "Save",
   "outOfRange": "Out of Range",
   "invalidValue": "Invalid Value",
-  "fillIn": "Please fill in"
+  "fillIn": "Please fill in",
+  "isInOrigin": "Is stopped in in Origin?",
+  "ok": "OK"
 }

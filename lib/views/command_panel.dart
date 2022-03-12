@@ -13,7 +13,8 @@ class CommandPanel extends StatefulWidget {
   State<CommandPanel> createState() => _CommandPanelState();
 }
 
-class _CommandPanelState extends State<CommandPanel> with SerialConnectionMixin {
+class _CommandPanelState extends State<CommandPanel>
+    with SerialConnectionMixin {
   @override
   Widget build(BuildContext context) {
     RotatorModel rotatorModel = context.watch<RotatorModel>();
@@ -25,23 +26,37 @@ class _CommandPanelState extends State<CommandPanel> with SerialConnectionMixin 
         const SizedBox(height: 8),
         Text('${S.of(context).elevation}: ${rotatorModel.currentElevation}'),
         const SizedBox(height: 15),
-        ElevatedButton(
-            onPressed: whenConnected(() {
-              rotatorModel.currentAzimuth = 0;
-              rotatorModel.currentElevation = 0;
-            }),
-            child: Text(S.of(context).setZero)),
+        SizedBox(
+          width: 100,
+          child: ElevatedButton(
+              onPressed: whenConnected(() {
+                rotatorModel.setCurrentAsOrigin();
+              }),
+              child: Text(S.of(context).setOrigin)),
+        ),
         const SizedBox(height: 15),
-        ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const CalibrationDialog();
-                  });
-              // Start the server
-            },
-            child: Text(S.of(context).calibrate)),
+        SizedBox(
+          width: 100,
+          child: ElevatedButton(
+              onPressed: whenConnected(() {
+                rotatorModel.setCurrentAsOrigin();
+              }),
+              child: Text(S.of(context).backToOrigin)),
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          width: 100,
+          child: ElevatedButton(
+              onPressed: whenConnected(() {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const CalibrationDialog();
+                    });
+                // Start the server
+              }),
+              child: Text(S.of(context).calibrate)),
+        ),
       ],
     );
   }

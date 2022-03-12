@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Satellite Tracker`
+  /// `Satellite Tracker (BG5AHE)`
   String get appName {
     return Intl.message(
-      'Satellite Tracker',
+      'Satellite Tracker (BG5AHE)',
       name: 'appName',
       desc: '',
       args: [],
@@ -180,11 +180,21 @@ class S {
     );
   }
 
-  /// `Set Zero`
-  String get setZero {
+  /// `Set Origin`
+  String get setOrigin {
     return Intl.message(
-      'Set Zero',
-      name: 'setZero',
+      'Set Origin',
+      name: 'setOrigin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Origin`
+  String get backToOrigin {
+    return Intl.message(
+      'Back to Origin',
+      name: 'backToOrigin',
       desc: '',
       args: [],
     );
@@ -385,6 +395,26 @@ class S {
     return Intl.message(
       'Please fill in',
       name: 'fillIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is stopped in in Origin?`
+  String get isInOrigin {
+    return Intl.message(
+      'Is stopped in in Origin?',
+      name: 'isInOrigin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
       desc: '',
       args: [],
     );
