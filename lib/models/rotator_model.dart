@@ -4,6 +4,8 @@ import 'package:satellite_tracker/_utils/easy_notifier.dart';
 class RotatorModel extends EasyNotifier {
   List<SerialPort> _availableSerialPorts = [];
   SerialPort? _connectedSerialPort;
+  bool _moving = false;
+  DateTime _moveStart = DateTime.now();
 
   int _rotatorAddr = 1;
   int _baudRate = 1200;
@@ -99,4 +101,12 @@ class RotatorModel extends EasyNotifier {
   set elevationEnd(int value) {
     notify(() => _elevationEnd = value);
   }
+
+  bool get moving => _moving;
+  set moving(bool value) {
+    _moveStart = DateTime.now();
+    notify(() => _moving = value);
+  }
+
+  DateTime get moveStartTime => _moveStart;
 }

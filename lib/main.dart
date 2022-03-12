@@ -20,8 +20,6 @@ void main() {
   TcpServer tcpServer = TcpServer();
   SerialService serialService = SerialService();
 
-  WidgetsFlutterBinding.ensureInitialized();
-  LoadPreferenceCommand().run();
 
   runApp(MultiProvider(providers: [
     Provider.value(value: tcpServer),
@@ -51,7 +49,7 @@ class SatelliteTrackerApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage(),
+        home: const AppBootstrap(),
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -59,6 +57,26 @@ class SatelliteTrackerApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales);
+  }
+}
+
+class AppBootstrap extends StatefulWidget {
+  const AppBootstrap({Key? key}) : super(key: key);
+
+  @override
+  State<AppBootstrap> createState() => _AppBootstrapState();
+}
+
+class _AppBootstrapState extends State<AppBootstrap> {
+
+  @override
+  void initState() {
+    super.initState();
+    LoadPreferenceCommand().run();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return const HomePage();
   }
 }
 

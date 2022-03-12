@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:satellite_tracker/_widgets/mixins/serial_connection_mixin.dart';
-import 'package:satellite_tracker/commands/pan_tilt_rotation_command.dart';
+import 'package:satellite_tracker/commands/rotate_pan_tilt_command.dart';
 
 import '../generated/l10n.dart';
 import '../models/rotator_model.dart';
@@ -32,7 +32,7 @@ class _JoystickPanelState extends State<JoystickPanel> with SerialConnectionMixi
           const SizedBox(width: 10),
           ElevatedButton(
               onPressed: whenConnected(() => {_rotatePanTilt(Direction.left)}), child: Text(S.of(context).left)),
-          ElevatedButton(onPressed: whenConnected(() => {_stopPanTilt()}), child: Text(S.of(context).stop)),
+          ElevatedButton(onPressed: whenConnected(() => {_rotatePanTilt(Direction.stop)}), child: Text(S.of(context).stop)),
           ElevatedButton(
               onPressed: whenConnected(() => {_rotatePanTilt(Direction.right)}), child: Text(S.of(context).right)),
           const SizedBox(width: 10),
@@ -45,11 +45,7 @@ class _JoystickPanelState extends State<JoystickPanel> with SerialConnectionMixi
   }
 
   void _rotatePanTilt(Direction direction) {
-    PanTiltRotationCommand().run(direction, 1);
+    RotatePanTiltCommand().run(direction);
   }
 
-  void _stopPanTilt() {
-    PanTiltRotationCommand().run(Direction.left, context.read<RotatorModel>().currentAzimuth);
-    PanTiltRotationCommand().run(Direction.down, context.read<RotatorModel>().currentElevation);
-  }
 }

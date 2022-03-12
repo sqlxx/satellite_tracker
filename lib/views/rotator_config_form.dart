@@ -5,6 +5,8 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:provider/provider.dart';
 import 'package:satellite_tracker/commands/list_serial_ports_command.dart';
 import 'package:satellite_tracker/commands/serial_connect_command.dart';
+import 'package:satellite_tracker/commands/serial_disconnect_command.dart';
+import 'package:satellite_tracker/commands/tracking_control_command.dart';
 import 'package:satellite_tracker/models/rotator_model.dart';
 
 import '../generated/l10n.dart';
@@ -43,7 +45,7 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
               items: _availableSerialPorts!.map((SerialPort e) {
                 return DropdownMenuItem(value: e, child: Text(e.description!));
               }).toList(),
-              onChanged: (SerialPort? selected) {
+              onChanged: _connected ? null: (SerialPort? selected) {
                 setState(() {
                   _selectedSerialPort = selected;
                 });
@@ -56,11 +58,19 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
               onPressed: _selectedSerialPort == null
                   ? null
                   : () {
-                      if (_selectedSerialPort != null) {
+                      if (_connected) {
+                        SerialDisconnectCommand().run();
+                        TrackingControlCommand().run(false);
+                        setState(() => _connected = false );
+                      } else {
                         if (SerialConnectCommand().run(_selectedSerialPort!)) {
-                          _connected = true;
+                          setState(() => _connected = true );
                         } else {
-                          debugPrint("Open serial port ${_selectedSerialPort!.name} failed");
+                          setState(() {
+                            _connected = false;
+                            debugPrint("Open serial port ${_selectedSerialPort!
+                                .name} failed");
+                          });
                         }
                       }
                     },
@@ -69,12 +79,11 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
           ElevatedButton(
               onPressed: !_connected
                   ? null
-                  : () {
-                      _tracking = !_tracking;
-                    },
+                  : () => TrackingControlCommand().run(!_tracking),
               child: _tracking ? Text(S.of(context).stopTracking) : Text(S.of(context).startTracking))
         ],
       ),
     );
   }
+
 }
