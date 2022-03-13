@@ -138,6 +138,7 @@ class RotatorModel extends EasyNotifier {
   DateTime get moveStartTime => _moveStart;
 
   void setAsOrigin() {
+    _setMoving(false);
     currentAzimuth = azimuthBegin * 1.0;
     currentElevation = elevationBegin * 1.0;
     debugPrint("Azimuth $currentAzimuth, Elevation $currentElevation");
@@ -149,6 +150,7 @@ class RotatorModel extends EasyNotifier {
         if (currentAzimuth > azimuthBegin) {
           currentAzimuth -= 0.1;
         } else {
+          currentAzimuth = azimuthBegin.toDouble();
           _setMoving(false);
         }
         break;
@@ -156,6 +158,7 @@ class RotatorModel extends EasyNotifier {
         if (currentAzimuth < azimuthEnd) {
           currentAzimuth += 0.1;
         } else {
+          currentAzimuth = azimuthEnd.toDouble();
           _setMoving(false);
         }
         break;
@@ -163,6 +166,7 @@ class RotatorModel extends EasyNotifier {
         if (currentElevation < elevationEnd) {
           currentElevation += 0.1;
         } else {
+          currentElevation = elevationEnd.toDouble();
           _setMoving(false);
         }
         break;
@@ -170,6 +174,7 @@ class RotatorModel extends EasyNotifier {
         if (currentElevation > elevationBegin) {
           currentElevation -= 0.1;
         } else {
+          currentElevation = elevationBegin.toDouble();
           _setMoving(false);
         }
         break;

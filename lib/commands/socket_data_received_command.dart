@@ -5,18 +5,20 @@ import 'package:satellite_tracker/commands/commands.dart';
 import 'package:satellite_tracker/commands/rotate_pan_tilt_command.dart';
 
 class SocketDataReceivedCommand extends BaseCommand {
-  static const int threshold = 1;
+  static const int threshold = 4;
   void run(Uint8List data) {
     String str = String.fromCharCodes(data).trim();
+    str = str.split("\n")[0]; // Only process the first command by now
     tcpServerModel.statusText = 'Data Received: $str';
     if (rotatorModel.tracking && rotatorModel.isConnected) {
       var result = _parseCommand(str);
       var azimuth = result[0];
       var elevation = result[1];
-      // TODO: only for debug
 
-      if (elevation < 0) elevation = -elevation;
-      if (azimuth < 0 || elevation < 0) {
+      // TODO: only for debug
+      // if (elevation < 0) elevation = -elevation;
+
+      if (azimuth < 0 || elevation <= 10) {
         debugPrint("Do nothing");
       } else {
         if (!rotatorModel.moving) {
@@ -41,59 +43,43 @@ class SocketDataReceivedCommand extends BaseCommand {
   }
 
   void _goTo(double azimuth, double elevation) async {
-    var intAzimuth = azimuth.toInt();
-    var intElevation = elevation.toInt();
-
-    if (intAzimuth < rotatorModel.azimuthBegin) {
-      intAzimuth = rotatorModel.azimuthBegin;
+    if (azimuth < rotatorModel.azimuthBegin) {
+      azimuth = rotatorModel.azimuthBegin.toDouble();
     }
-    if (intAzimuth > rotatorModel.azimuthEnd) {
-      intAzimuth = rotatorModel.azimuthEnd;
+    if (azimuth > rotatorModel.azimuthEnd) {
+      azimuth = rotatorModel.azimuthEnd.toDouble();
     }
-    if (intElevation < rotatorModel.elevationBegin) {
-      intElevation = rotatorModel.elevationBegin;
+    if (elevation < rotatorModel.elevationBegin) {
+      elevation = rotatorModel.elevationBegin.toDouble();
     }
-    if (intElevation > rotatorModel.elevationEnd) {
-      intElevation = rotatorModel.elevationEnd;
+    if (elevation > rotatorModel.elevationEnd) {
+      elevation = rotatorModel.elevationEnd.toDouble();
     }
 
-    var azimuthDiff = intAzimuth - rotatorModel.currentAzimuth.toInt();
-    var elevationDiff = intElevation - rotatorModel.currentElevation.toInt();
+    var azimuthDiff = azimuth - rotatorModel.currentAzimuth;
+    var elevationDiff = elevation - rotatorModel.currentElevation;
 
     if (azimuthDiff >= threshold) {
-      RotatePanTiltCommand().run(RotatorAction.right);
-      await _waitTillAzimuth(intAzimuth);
-      RotatePanTiltCommand().run(RotatorAction.stop);
-      debugPrint("Move Azimuth to $intAzimuth");
+      await RotatePanTiltCommand()
+          .run(RotatorAction.right, degree: azimuthDiff);
+      debugPrint(
+          "Moved azimuth right $azimuthDiff to ${rotatorModel.currentAzimuth}, expected $azimuth");
     } else if (azimuthDiff <= -threshold) {
-      RotatePanTiltCommand().run(RotatorAction.left);
-      await _waitTillAzimuth(intAzimuth);
-      RotatePanTiltCommand().run(RotatorAction.stop);
-      debugPrint("Move Azimuth to $intAzimuth");
+      await RotatePanTiltCommand()
+          .run(RotatorAction.left, degree: -azimuthDiff);
+      debugPrint(
+          "Moved azimuth left ${-azimuthDiff} to ${rotatorModel.currentAzimuth}, expected $azimuth");
     }
 
     if (elevationDiff >= threshold) {
-      RotatePanTiltCommand().run(RotatorAction.up);
-      await _waitTillElevation(intElevation);
-      RotatePanTiltCommand().run(RotatorAction.stop);
-      debugPrint("Move Elevation to $intElevation");
+      await RotatePanTiltCommand().run(RotatorAction.up, degree: elevationDiff);
+      debugPrint(
+          "Moved elevation up $elevationDiff to ${rotatorModel.currentElevation}, expected $elevation");
     } else if (elevationDiff <= -threshold) {
-      RotatePanTiltCommand().run(RotatorAction.down);
-      await _waitTillElevation(intElevation);
-      RotatePanTiltCommand().run(RotatorAction.stop);
-      debugPrint("Move Elevation to $intElevation");
-    }
-  }
-
-  Future<void> _waitTillAzimuth(int azimuth) async {
-    while (rotatorModel.currentAzimuth.toInt() != azimuth) {
-      await Future.delayed(const Duration(milliseconds: 1));
-    }
-  }
-
-  Future<void> _waitTillElevation(int elevation) async {
-    while (rotatorModel.currentElevation.toInt() != elevation) {
-      await Future.delayed(const Duration(milliseconds: 1));
+      await RotatePanTiltCommand()
+          .run(RotatorAction.down, degree: -elevationDiff);
+      debugPrint(
+          "Moved elevation down ${-elevationDiff} to ${rotatorModel.currentElevation}, expected $elevation");
     }
   }
 }

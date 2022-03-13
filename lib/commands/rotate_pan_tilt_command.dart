@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 import 'commands.dart';
@@ -5,21 +6,31 @@ import 'commands.dart';
 enum RotatorAction { left, right, up, down, stop, setOrigin, gotoOrigin }
 
 class RotatePanTiltCommand extends BaseCommand {
-  bool run(RotatorAction direction) {
+  Future<bool> run(RotatorAction rotatorAction, {double? degree}) async {
     SerialPort? serialPort = rotatorModel.connectedSerialPort;
     assert(serialPort != null && serialPort.isOpen);
 
-    rotatorModel.setAction(direction);
-
-    switch (direction) {
+    switch (rotatorAction) {
       case RotatorAction.left:
-        return serialService.rotateLeft(serialPort!);
+        var success = serialService.rotateLeft(serialPort!);
+        rotatorModel.setAction(rotatorAction);
+        await _futureStop(degree, rotatorModel.horizontalSpeed, serialPort);
+        return success;
       case RotatorAction.right:
-        return serialService.rotateRight(serialPort!);
+        var success = serialService.rotateRight(serialPort!);
+        rotatorModel.setAction(rotatorAction);
+        await _futureStop(degree, rotatorModel.horizontalSpeed, serialPort);
+        return success;
       case RotatorAction.up:
-        return serialService.rotateUp(serialPort!);
+        var success = serialService.rotateUp(serialPort!);
+        rotatorModel.setAction(rotatorAction);
+        await _futureStop(degree, rotatorModel.verticalSpeed, serialPort);
+        return success;
       case RotatorAction.down:
-        return serialService.rotateDown(serialPort!);
+        var success = serialService.rotateDown(serialPort!);
+        rotatorModel.setAction(rotatorAction);
+        await _futureStop(degree, rotatorModel.verticalSpeed, serialPort);
+        return success;
       case RotatorAction.setOrigin:
         rotatorModel.setAsOrigin();
         return serialService.setOrigin(serialPort!);
@@ -28,9 +39,21 @@ class RotatePanTiltCommand extends BaseCommand {
         rotatorModel.setAsOrigin();
         return success;
       default: // Only the stop case
+        rotatorModel.setAction(rotatorAction);
         return serialService.stop(serialPort!);
     }
   }
 
-  // bool run(RotatorAction direction, int degress) {}
+  Future<void> _futureStop(
+      double? degree, int speed, SerialPort serialPort) async {
+    if (degree != null && degree > 0) {
+      debugPrint("Schedule stop after ${degree * speed} ms");
+      await Future.delayed(
+          Duration(microseconds: (degree * speed * 1000).toInt()), () {
+        serialService.stop(serialPort);
+        rotatorModel.setAction(RotatorAction.stop);
+      });
+      debugPrint("stop command sent");
+    }
+  }
 }
