@@ -26,7 +26,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Satellite Tracker (BG5AHE)"),
         "azimuth": MessageLookupByLibrary.simpleMessage("Azimuth"),
         "azimuthRange": MessageLookupByLibrary.simpleMessage("Azimuth Range"),
-        "backToOrigin": MessageLookupByLibrary.simpleMessage("Back to Origin"),
         "begin": MessageLookupByLibrary.simpleMessage("Begin"),
         "calibrate": MessageLookupByLibrary.simpleMessage("Calibrate"),
         "connect": MessageLookupByLibrary.simpleMessage("Connect"),
@@ -37,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Elevation Range"),
         "end": MessageLookupByLibrary.simpleMessage("End"),
         "fillIn": MessageLookupByLibrary.simpleMessage("Please fill in"),
+        "gotoOrigin": MessageLookupByLibrary.simpleMessage("Back to Origin"),
         "horizontalReset":
             MessageLookupByLibrary.simpleMessage("Horizontal Reset"),
         "horizontalSpeed":

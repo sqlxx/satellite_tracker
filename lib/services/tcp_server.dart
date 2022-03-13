@@ -26,6 +26,7 @@ class TcpServer {
         SocketDataReceivedCommand().run(event);
       }, onDone: () {
         SocketClientConnectionCommand().run(client, false);
+        _client = null;
       }, onError: (Object error, StackTrace stackTrace) {
         SocketClientErrorCommand().run(error, stackTrace);
       });

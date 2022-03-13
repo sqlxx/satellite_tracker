@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:satellite_tracker/_widgets/mixins/serial_connection_mixin.dart';
+import 'package:satellite_tracker/commands/rotate_pan_tilt_command.dart';
 import 'package:satellite_tracker/models/rotator_model.dart';
 
 import '../generated/l10n.dart';
@@ -22,15 +23,17 @@ class _CommandPanelState extends State<CommandPanel>
 
     return Column(
       children: [
-        Text('${S.of(context).azimuth}: ${rotatorModel.currentAzimuth}'),
+        Text(
+            '${S.of(context).azimuth}: ${rotatorModel.currentAzimuth.toStringAsFixed(1)}'),
         const SizedBox(height: 8),
-        Text('${S.of(context).elevation}: ${rotatorModel.currentElevation}'),
+        Text(
+            '${S.of(context).elevation}: ${rotatorModel.currentElevation.toStringAsFixed(1)}'),
         const SizedBox(height: 15),
         SizedBox(
           width: 100,
           child: ElevatedButton(
               onPressed: whenConnected(() {
-                rotatorModel.setCurrentAsOrigin();
+                RotatePanTiltCommand().run(RotatorAction.setOrigin);
               }),
               child: Text(S.of(context).setOrigin)),
         ),
@@ -39,9 +42,9 @@ class _CommandPanelState extends State<CommandPanel>
           width: 100,
           child: ElevatedButton(
               onPressed: whenConnected(() {
-                rotatorModel.setCurrentAsOrigin();
+                RotatePanTiltCommand().run(RotatorAction.gotoOrigin);
               }),
-              child: Text(S.of(context).backToOrigin)),
+              child: Text(S.of(context).gotoOrigin)),
         ),
         const SizedBox(height: 15),
         SizedBox(

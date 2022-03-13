@@ -2,35 +2,35 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 import 'commands.dart';
 
-enum RotatorAction { left, right, up, down, stop }
+enum RotatorAction { left, right, up, down, stop, setOrigin, gotoOrigin }
 
 class RotatePanTiltCommand extends BaseCommand {
   bool run(RotatorAction direction) {
     SerialPort? serialPort = rotatorModel.connectedSerialPort;
     assert(serialPort != null && serialPort.isOpen);
 
-    // if (rotatorModel.moving && direction != Direction.stop) {
-    //   debugPrint("Ignore command as it's moving");
-    //   return false;
-    // }
+    rotatorModel.setAction(direction);
 
     switch (direction) {
       case RotatorAction.left:
-        rotatorModel.moving = true;
         return serialService.rotateLeft(serialPort!);
       case RotatorAction.right:
-        rotatorModel.moving = true;
         return serialService.rotateRight(serialPort!);
       case RotatorAction.up:
-        rotatorModel.moving = true;
         return serialService.rotateUp(serialPort!);
       case RotatorAction.down:
-        rotatorModel.moving = true;
         return serialService.rotateDown(serialPort!);
+      case RotatorAction.setOrigin:
+        rotatorModel.setAsOrigin();
+        return serialService.setOrigin(serialPort!);
+      case RotatorAction.gotoOrigin:
+        bool success = serialService.gotoOrigin(serialPort!);
+        rotatorModel.setAsOrigin();
+        return success;
       default: // Only the stop case
-        rotatorModel.moving = false;
         return serialService.stop(serialPort!);
     }
-
   }
+
+  // bool run(RotatorAction direction, int degress) {}
 }

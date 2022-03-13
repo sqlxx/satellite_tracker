@@ -13,7 +13,7 @@
   "azimuth": "方位角",
   "elevation": "仰角",
   "setOrigin": "设置原点",
-  "backToOrigin": "回原点",
+  "gotoOrigin": "回原点",
   "calibrate": "校准",
   "up": "上",
   "down": "下",

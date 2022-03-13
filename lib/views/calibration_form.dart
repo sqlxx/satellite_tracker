@@ -46,6 +46,8 @@ class _CalibrationFormState extends State<CalibrationForm> {
       key: _formKey,
       child: Column(
         children: [
+          const Text('校准前请先重置，校准后请点击保存数据.'),
+          const SizedBox(height: 20),
           Row(
             children: [
               SizedBox(
@@ -128,7 +130,7 @@ class _CalibrationFormState extends State<CalibrationForm> {
               SizedBox(
                   width: 200,
                   child: ElevatedButton(
-                      onPressed: null,
+                      onPressed: rotatorModel.isConnected ? _onCalibrate : null,
                       child: Text(S.of(context).startCalibrate))),
               const SizedBox(width: 10),
               SizedBox(
@@ -143,6 +145,27 @@ class _CalibrationFormState extends State<CalibrationForm> {
   }
 
   bool get isAzimuth => widget._mode == Mode.azimuth;
+
+  void _onCalibrate() {
+    if (isAzimuth) {
+      RotatePanTiltCommand().run(RotatorAction.right);
+    } else {
+      RotatePanTiltCommand().run(RotatorAction.up);
+    }
+    MessageBox.show(context, '当云台达到另一端时按下确定', _calibrateFinish);
+  }
+
+  void _calibrateFinish() {
+    RotatorModel rotatorModel = context.read();
+    int duration =
+        DateTime.now().difference(rotatorModel.moveStartTime).inMilliseconds;
+
+    if (isAzimuth) {
+      rotatorModel.horizontalSpeed = duration ~/ rotatorModel.azimuthRange;
+    } else {
+      rotatorModel.verticalSpeed = duration ~/ rotatorModel.elevationRange;
+    }
+  }
 
   void _onReset() {
     _onSave();

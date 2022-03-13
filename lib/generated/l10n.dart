@@ -191,10 +191,10 @@ class S {
   }
 
   /// `Back to Origin`
-  String get backToOrigin {
+  String get gotoOrigin {
     return Intl.message(
       'Back to Origin',
-      name: 'backToOrigin',
+      name: 'gotoOrigin',
       desc: '',
       args: [],
     );

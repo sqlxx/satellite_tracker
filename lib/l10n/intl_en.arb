@@ -13,7 +13,7 @@
   "azimuth": "Azimuth",
   "elevation": "Elevation",
   "setOrigin": "Set Origin",
-  "backToOrigin": "Back to Origin",
+  "gotoOrigin": "Back to Origin",
   "calibrate": "Calibrate",
   "up": "Up",
   "down": "Down",

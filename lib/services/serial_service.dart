@@ -70,11 +70,19 @@ class SerialService {
     return _sendCommand(serialPort, [0xff, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01]);
   }
 
+  bool setOrigin(SerialPort serialPort) {
+    return _sendCommand(serialPort, [0xff, 0x01, 0x00, 0x03, 0x00, 0x01, 0x05]);
+  }
+
+  bool gotoOrigin(SerialPort serialPort) {
+    return _sendCommand(serialPort, [0xff, 0x01, 0x00, 0x07, 0x00, 0x01, 0x09]);
+  }
+
   bool _sendCommand(SerialPort serialPort, List<int> commandBytes) {
     if (_isValidPort(serialPort)) {
       Uint8List command = Uint8List.fromList(commandBytes);
       int writeBytes = serialPort.write(command);
-      debugPrint("Command sent");
+      debugPrint("Command $commandBytes sent");
       return writeBytes == commandBytes.length;
     } else {
       debugPrint("Invalid Port");
