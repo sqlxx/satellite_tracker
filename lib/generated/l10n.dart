@@ -419,6 +419,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Correction`
+  String get correction {
+    return Intl.message(
+      'Correction',
+      name: 'correction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

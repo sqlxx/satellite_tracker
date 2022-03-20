@@ -35,5 +35,6 @@
   "invalidValue": "Invalid Value",
   "fillIn": "Please fill in",
   "isInOrigin": "Is stopped in in Origin?",
-  "ok": "OK"
+  "ok": "OK",
+  "correction": "Correction"
 }

@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "begin": MessageLookupByLibrary.simpleMessage("起始"),
         "calibrate": MessageLookupByLibrary.simpleMessage("校准"),
         "connect": MessageLookupByLibrary.simpleMessage("连接"),
+        "correction": MessageLookupByLibrary.simpleMessage("纠偏"),
         "disconnect": MessageLookupByLibrary.simpleMessage("断开"),
         "down": MessageLookupByLibrary.simpleMessage("下"),
         "elevation": MessageLookupByLibrary.simpleMessage("仰角"),

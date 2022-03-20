@@ -60,12 +60,27 @@ class RotatorModel extends EasyNotifier {
   int get rotatorAddr => _rotatorAddr;
 
   set currentAzimuth(double value) {
+    if (value > azimuthEnd) {
+      value = azimuthEnd.toDouble();
+    }
+
+    if (value < azimuthBegin) {
+      value = azimuthBegin.toDouble();
+    }
+
     notify(() => _currentAzimuth = value);
   }
 
   double get currentAzimuth => _currentAzimuth;
 
   set currentElevation(double value) {
+    if (value > elevationEnd) {
+      value = elevationEnd.toDouble();
+    }
+
+    if (value < elevationBegin) {
+      value = elevationBegin.toDouble();
+    }
     notify(() => _currentElevation = value);
   }
 

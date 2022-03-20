@@ -35,5 +35,6 @@
   "invalidValue": "无效值",
   "fillIn": "请填写",
   "isInOrigin": "已回到原点?",
-  "ok": "确定"
+  "ok": "确定",
+  "correction": "纠偏"
 }

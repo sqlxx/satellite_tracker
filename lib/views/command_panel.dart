@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:satellite_tracker/_widgets/mixins/serial_connection_mixin.dart';
@@ -21,13 +23,66 @@ class _CommandPanelState extends State<CommandPanel>
     RotatorModel rotatorModel = context.watch<RotatorModel>();
     isSerialPortOpened = rotatorModel.connectedSerialPort != null;
 
+    final elevationTextController = TextEditingController();
+    final azimuthTextController = TextEditingController();
     return Column(
       children: [
-        Text(
-            '${S.of(context).azimuth}: ${rotatorModel.currentAzimuth.toStringAsFixed(1)}'),
-        const SizedBox(height: 8),
-        Text(
-            '${S.of(context).elevation}: ${rotatorModel.currentElevation.toStringAsFixed(1)}'),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(
+              width: 100,
+              child: Text(
+                  '${S.of(context).azimuth}: ${rotatorModel.currentAzimuth.toStringAsFixed(1)}',
+                  style: const TextStyle(
+                      fontFeatures: [FontFeature.tabularFigures()])),
+            ),
+            const SizedBox(width: 10),
+            SizedBox(
+              width: 50,
+              height: 40,
+              child: TextField(
+                controller: azimuthTextController,
+                decoration: InputDecoration(
+                    labelText: S.of(context).correction,
+                    labelStyle: const TextStyle(fontSize: 10)),
+                onSubmitted: (value) {
+                  rotatorModel.currentAzimuth += int.tryParse(value) ?? 0;
+                  azimuthTextController.clear();
+                },
+                style: const TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(
+              width: 100,
+              child: Text(
+                  '    ${S.of(context).elevation}: ${rotatorModel.currentElevation.toStringAsFixed(1)}',
+                  style: const TextStyle(
+                      fontFeatures: [FontFeature.tabularFigures()])),
+            ),
+            const SizedBox(width: 10),
+            SizedBox(
+              width: 50,
+              height: 40,
+              child: TextField(
+                controller: elevationTextController,
+                decoration: InputDecoration(
+                    labelText: S.of(context).correction,
+                    labelStyle: const TextStyle(fontSize: 10)),
+                onSubmitted: (value) {
+                  rotatorModel.currentElevation += int.tryParse(value) ?? 0;
+                  elevationTextController.clear();
+                },
+                style: const TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
         const SizedBox(height: 15),
         SizedBox(
           width: 100,

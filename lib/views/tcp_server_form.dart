@@ -40,7 +40,8 @@ class _TcpServerFormState extends State<TcpServerForm> {
     return Form(
         key: _formKey,
         child: Row(children: [
-          Text(S.of(context).port, style: Theme.of(context).textTheme.titleMedium),
+          Text(S.of(context).port,
+              style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(width: 15),
           SizedBox(
               width: 80,
@@ -48,7 +49,9 @@ class _TcpServerFormState extends State<TcpServerForm> {
                 controller: _portController,
                 decoration: InputDecoration(hintText: S.of(context).port),
                 textAlign: TextAlign.right,
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                ],
                 enabled: !_serverModel.serving,
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -77,9 +80,12 @@ class _TcpServerFormState extends State<TcpServerForm> {
                       }
                     }
                   },
-                  child: Text(_serverModel.serving ? S.of(context).stop : S.of(context).start))),
+                  child: Text(_serverModel.serving
+                      ? S.of(context).stop
+                      : S.of(context).start))),
           const SizedBox(width: 10),
-          Text(S.of(context).status, style: Theme.of(context).textTheme.titleSmall),
+          Text(S.of(context).status,
+              style: Theme.of(context).textTheme.titleSmall),
           Text(_serverModel.statusText),
         ]));
   }

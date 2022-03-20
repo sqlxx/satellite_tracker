@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "begin": MessageLookupByLibrary.simpleMessage("Begin"),
         "calibrate": MessageLookupByLibrary.simpleMessage("Calibrate"),
         "connect": MessageLookupByLibrary.simpleMessage("Connect"),
+        "correction": MessageLookupByLibrary.simpleMessage("Correction"),
         "disconnect": MessageLookupByLibrary.simpleMessage("Disconnect"),
         "down": MessageLookupByLibrary.simpleMessage("Down"),
         "elevation": MessageLookupByLibrary.simpleMessage("Elevation"),
