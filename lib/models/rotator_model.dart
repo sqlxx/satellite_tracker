@@ -17,18 +17,18 @@ class RotatorModel extends EasyNotifier {
   int _baudRate = 2400; //Not used yet
 
   double _currentAzimuth = 5;
-  double _currentElevation = 15;
+  double _currentElevation = 7;
 
   int _azimuthBegin = 5;
   int _azimuthEnd = 355;
 
-  int _elevationBegin = 15;
-  int _elevationEnd = 85;
+  int _elevationBegin = 7;
+  int _elevationEnd = 60;
 
   bool _tracking = false;
 
-  int _horizontalSpeed = 75; //ms per degree
-  int _verticalSpeed = 435; //ms per degree
+  int _horizontalSpeed = 72; //ms per degree
+  int _verticalSpeed = 580; //ms per degree
 
   Timer? _timer;
 
