@@ -45,7 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "inputRequired": MessageLookupByLibrary.simpleMessage("Please input"),
         "invalidValue": MessageLookupByLibrary.simpleMessage("Invalid Value"),
         "isInOrigin":
-            MessageLookupByLibrary.simpleMessage("Is stopped in in Origin?"),
+            MessageLookupByLibrary.simpleMessage("Arrived in Origin?"),
         "left": MessageLookupByLibrary.simpleMessage("Left"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "outOfRange": MessageLookupByLibrary.simpleMessage("Out of Range"),

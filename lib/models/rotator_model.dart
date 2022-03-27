@@ -27,8 +27,8 @@ class RotatorModel extends EasyNotifier {
 
   bool _tracking = false;
 
-  int _horizontalSpeed = 1; //ms per degree
-  int _verticalSpeed = 1; //ms per degree
+  int _horizontalSpeed = 75; //ms per degree
+  int _verticalSpeed = 435; //ms per degree
 
   Timer? _timer;
 

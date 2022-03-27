@@ -400,10 +400,10 @@ class S {
     );
   }
 
-  /// `Is stopped in in Origin?`
+  /// `Arrived in Origin?`
   String get isInOrigin {
     return Intl.message(
-      'Is stopped in in Origin?',
+      'Arrived in Origin?',
       name: 'isInOrigin',
       desc: '',
       args: [],
