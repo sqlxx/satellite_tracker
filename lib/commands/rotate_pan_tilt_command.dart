@@ -6,7 +6,7 @@ import 'commands.dart';
 enum RotatorAction { left, right, up, down, stop, setOrigin, gotoOrigin }
 
 class RotatePanTiltCommand extends BaseCommand {
-  Future<bool> run(RotatorAction rotatorAction, {double? degree}) async {
+  Future<bool> run(RotatorAction rotatorAction, {int? degree}) async {
     SerialPort? serialPort = rotatorModel.connectedSerialPort;
     assert(serialPort != null && serialPort.isOpen);
 
@@ -44,12 +44,10 @@ class RotatePanTiltCommand extends BaseCommand {
     }
   }
 
-  Future<void> _futureStop(
-      double? degree, int speed, SerialPort serialPort) async {
+  Future<void> _futureStop(int? degree, int speed, SerialPort serialPort) async {
     if (degree != null && degree > 0) {
       debugPrint("Schedule stop after ${degree * speed} ms");
-      await Future.delayed(
-          Duration(microseconds: (degree * speed * 1000).toInt()), () {
+      await Future.delayed(Duration(milliseconds: (degree * speed).toInt()), () {
         serialService.stop(serialPort);
         rotatorModel.setAction(RotatorAction.stop);
       });

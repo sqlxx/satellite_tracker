@@ -43,16 +43,28 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
             width: 230,
             child: DropdownButtonFormField(
               items: _availableSerialPorts!.map((SerialPort e) {
+                debugPrint("!!! ${e.description}");
                 return DropdownMenuItem(value: e, child: Text(e.description!));
               }).toList(),
-              onChanged: _connected ? null: (SerialPort? selected) {
-                setState(() {
-                  _selectedSerialPort = selected;
-                });
-              },
+              onChanged: _connected
+                  ? null
+                  : (SerialPort? selected) {
+                      setState(() {
+                        _selectedSerialPort = selected;
+                      });
+                    },
               value: _selectedSerialPort,
             ),
           ),
+          IconButton(
+              onPressed: _connected
+                  ? null
+                  : () {
+                      _selectedSerialPort = null;
+                      ListSerialPortsCommand().run();
+                    },
+              icon: const Icon(Icons.refresh),
+              splashRadius: 15),
           const SizedBox(width: 10),
           ElevatedButton(
               onPressed: _selectedSerialPort == null
@@ -61,15 +73,14 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
                       if (_connected) {
                         SerialDisconnectCommand().run();
                         TrackingControlCommand().run(false);
-                        setState(() => _connected = false );
+                        setState(() => _connected = false);
                       } else {
                         if (SerialConnectCommand().run(_selectedSerialPort!)) {
-                          setState(() => _connected = true );
+                          setState(() => _connected = true);
                         } else {
                           setState(() {
                             _connected = false;
-                            debugPrint("Open serial port ${_selectedSerialPort!
-                                .name} failed");
+                            debugPrint("Open serial port ${_selectedSerialPort!.name} failed");
                           });
                         }
                       }
@@ -77,13 +88,10 @@ class _RotatorConfigFormState extends State<RotatorConfigForm> {
               child: _connected ? Text(S.of(context).disconnect) : Text(S.of(context).connect)),
           const SizedBox(width: 10),
           ElevatedButton(
-              onPressed: !_connected
-                  ? null
-                  : () => TrackingControlCommand().run(!_tracking),
+              onPressed: !_connected ? null : () => TrackingControlCommand().run(!_tracking),
               child: _tracking ? Text(S.of(context).stopTracking) : Text(S.of(context).startTracking))
         ],
       ),
     );
   }
-
 }

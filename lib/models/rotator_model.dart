@@ -16,8 +16,8 @@ class RotatorModel extends EasyNotifier {
   int _rotatorAddr = 1;
   int _baudRate = 2400; //Not used yet
 
-  double _currentAzimuth = 5;
-  double _currentElevation = 7;
+  int _currentAzimuth = 5;
+  int _currentElevation = 7;
 
   int _azimuthBegin = 5;
   int _azimuthEnd = 355;
@@ -38,9 +38,7 @@ class RotatorModel extends EasyNotifier {
     notify(() => _availableSerialPorts = value);
   }
 
-  bool get isMovingAzimuth =>
-      _movingDirection == RotatorAction.left ||
-      _movingDirection == RotatorAction.right;
+  bool get isMovingAzimuth => _movingDirection == RotatorAction.left || _movingDirection == RotatorAction.right;
 
   List<SerialPort> get availableSerialPorts => _availableSerialPorts;
 
@@ -50,8 +48,7 @@ class RotatorModel extends EasyNotifier {
 
   SerialPort? get connectedSerialPort => _connectedSerialPort;
 
-  bool get isConnected =>
-      _connectedSerialPort != null && _connectedSerialPort!.isOpen;
+  bool get isConnected => _connectedSerialPort != null && _connectedSerialPort!.isOpen;
 
   set rotatorAddr(int value) {
     notify(() => _rotatorAddr = value);
@@ -59,32 +56,32 @@ class RotatorModel extends EasyNotifier {
 
   int get rotatorAddr => _rotatorAddr;
 
-  set currentAzimuth(double value) {
+  set currentAzimuth(int value) {
     if (value > azimuthEnd) {
-      value = azimuthEnd.toDouble();
+      value = azimuthEnd;
     }
 
     if (value < azimuthBegin) {
-      value = azimuthBegin.toDouble();
+      value = azimuthBegin;
     }
 
     notify(() => _currentAzimuth = value);
   }
 
-  double get currentAzimuth => _currentAzimuth;
+  int get currentAzimuth => _currentAzimuth;
 
-  set currentElevation(double value) {
+  set currentElevation(int value) {
     if (value > elevationEnd) {
-      value = elevationEnd.toDouble();
+      value = elevationEnd;
     }
 
     if (value < elevationBegin) {
-      value = elevationBegin.toDouble();
+      value = elevationBegin;
     }
     notify(() => _currentElevation = value);
   }
 
-  double get currentElevation => _currentElevation;
+  int get currentElevation => _currentElevation;
 
   set baudRate(int value) {
     notify(() => _baudRate = value);
@@ -144,8 +141,7 @@ class RotatorModel extends EasyNotifier {
       _moveStart = DateTime.now();
       int interval = isMovingAzimuth ? horizontalSpeed : verticalSpeed;
       debugPrint("Start timer with $interval ms");
-      _timer =
-          Timer.periodic(Duration(microseconds: interval * 100), _onChange);
+      _timer = Timer.periodic(Duration(milliseconds: interval), _onChange);
     }
     notify(() => _moving = value);
   }
@@ -154,8 +150,8 @@ class RotatorModel extends EasyNotifier {
 
   void setAsOrigin() {
     _setMoving(false);
-    currentAzimuth = azimuthBegin * 1.0;
-    currentElevation = elevationBegin * 1.0;
+    currentAzimuth = azimuthBegin;
+    currentElevation = elevationBegin;
     debugPrint("Azimuth $currentAzimuth, Elevation $currentElevation");
   }
 
@@ -163,33 +159,33 @@ class RotatorModel extends EasyNotifier {
     switch (_movingDirection) {
       case RotatorAction.left:
         if (currentAzimuth > azimuthBegin) {
-          currentAzimuth -= 0.1;
+          currentAzimuth -= 1;
         } else {
-          currentAzimuth = azimuthBegin.toDouble();
+          currentAzimuth = azimuthBegin;
           _setMoving(false);
         }
         break;
       case RotatorAction.right:
         if (currentAzimuth < azimuthEnd) {
-          currentAzimuth += 0.1;
+          currentAzimuth += 1;
         } else {
-          currentAzimuth = azimuthEnd.toDouble();
+          currentAzimuth = azimuthEnd;
           _setMoving(false);
         }
         break;
       case RotatorAction.up:
         if (currentElevation < elevationEnd) {
-          currentElevation += 0.1;
+          currentElevation += 1;
         } else {
-          currentElevation = elevationEnd.toDouble();
+          currentElevation = elevationEnd;
           _setMoving(false);
         }
         break;
       case RotatorAction.down:
         if (currentElevation > elevationBegin) {
-          currentElevation -= 0.1;
+          currentElevation -= 1;
         } else {
-          currentElevation = elevationBegin.toDouble();
+          currentElevation = elevationBegin;
           _setMoving(false);
         }
         break;

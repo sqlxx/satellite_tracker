@@ -16,8 +16,7 @@ class CommandPanel extends StatefulWidget {
   State<CommandPanel> createState() => _CommandPanelState();
 }
 
-class _CommandPanelState extends State<CommandPanel>
-    with SerialConnectionMixin {
+class _CommandPanelState extends State<CommandPanel> with SerialConnectionMixin {
   @override
   Widget build(BuildContext context) {
     RotatorModel rotatorModel = context.watch<RotatorModel>();
@@ -29,13 +28,12 @@ class _CommandPanelState extends State<CommandPanel>
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               width: 100,
-              child: Text(
-                  '${S.of(context).azimuth}: ${rotatorModel.currentAzimuth.toStringAsFixed(1)}',
-                  style: const TextStyle(
-                      fontFeatures: [FontFeature.tabularFigures()])),
+              child: Text('${S.of(context).azimuth}: ${rotatorModel.currentAzimuth.toString()}',
+                  style: const TextStyle(fontFeatures: [FontFeature.tabularFigures()])),
             ),
             const SizedBox(width: 10),
             SizedBox(
@@ -43,9 +41,8 @@ class _CommandPanelState extends State<CommandPanel>
               height: 40,
               child: TextField(
                 controller: azimuthTextController,
-                decoration: InputDecoration(
-                    labelText: S.of(context).correction,
-                    labelStyle: const TextStyle(fontSize: 10)),
+                decoration:
+                    InputDecoration(labelText: S.of(context).correction, labelStyle: const TextStyle(fontSize: 10)),
                 onSubmitted: (value) {
                   rotatorModel.currentAzimuth += int.tryParse(value) ?? 0;
                   azimuthTextController.clear();
@@ -57,13 +54,12 @@ class _CommandPanelState extends State<CommandPanel>
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               width: 100,
-              child: Text(
-                  '    ${S.of(context).elevation}: ${rotatorModel.currentElevation.toStringAsFixed(1)}',
-                  style: const TextStyle(
-                      fontFeatures: [FontFeature.tabularFigures()])),
+              child: Text('${S.of(context).elevation}: ${rotatorModel.currentElevation.toString()}',
+                  style: const TextStyle(fontFeatures: [FontFeature.tabularFigures()])),
             ),
             const SizedBox(width: 10),
             SizedBox(
@@ -71,9 +67,8 @@ class _CommandPanelState extends State<CommandPanel>
               height: 40,
               child: TextField(
                 controller: elevationTextController,
-                decoration: InputDecoration(
-                    labelText: S.of(context).correction,
-                    labelStyle: const TextStyle(fontSize: 10)),
+                decoration:
+                    InputDecoration(labelText: S.of(context).correction, labelStyle: const TextStyle(fontSize: 10)),
                 onSubmitted: (value) {
                   rotatorModel.currentElevation += int.tryParse(value) ?? 0;
                   elevationTextController.clear();

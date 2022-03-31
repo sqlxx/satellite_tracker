@@ -22,7 +22,7 @@ class SocketDataReceivedCommand extends BaseCommand {
         debugPrint("Do nothing");
       } else {
         if (!rotatorModel.moving) {
-          _goTo(azimuth, elevation);
+          _goTo(azimuth.toInt(), elevation.toInt());
         }
       }
     }
@@ -42,44 +42,37 @@ class SocketDataReceivedCommand extends BaseCommand {
     }
   }
 
-  void _goTo(double azimuth, double elevation) async {
+  void _goTo(int azimuth, int elevation) async {
     if (azimuth < rotatorModel.azimuthBegin) {
-      azimuth = rotatorModel.azimuthBegin.toDouble();
+      azimuth = rotatorModel.azimuthBegin;
     }
     if (azimuth > rotatorModel.azimuthEnd) {
-      azimuth = rotatorModel.azimuthEnd.toDouble();
+      azimuth = rotatorModel.azimuthEnd;
     }
     if (elevation < rotatorModel.elevationBegin) {
-      elevation = rotatorModel.elevationBegin.toDouble();
+      elevation = rotatorModel.elevationBegin;
     }
     if (elevation > rotatorModel.elevationEnd) {
-      elevation = rotatorModel.elevationEnd.toDouble();
+      elevation = rotatorModel.elevationEnd;
     }
 
     var azimuthDiff = azimuth - rotatorModel.currentAzimuth;
     var elevationDiff = elevation - rotatorModel.currentElevation;
 
     if (azimuthDiff >= threshold) {
-      await RotatePanTiltCommand()
-          .run(RotatorAction.right, degree: azimuthDiff);
-      debugPrint(
-          "Moved azimuth right $azimuthDiff to ${rotatorModel.currentAzimuth}, expected $azimuth");
+      await RotatePanTiltCommand().run(RotatorAction.right, degree: azimuthDiff);
+      debugPrint("Moved azimuth right $azimuthDiff to ${rotatorModel.currentAzimuth}, expected $azimuth");
     } else if (azimuthDiff <= -threshold) {
-      await RotatePanTiltCommand()
-          .run(RotatorAction.left, degree: -azimuthDiff);
-      debugPrint(
-          "Moved azimuth left ${-azimuthDiff} to ${rotatorModel.currentAzimuth}, expected $azimuth");
+      await RotatePanTiltCommand().run(RotatorAction.left, degree: -azimuthDiff);
+      debugPrint("Moved azimuth left ${-azimuthDiff} to ${rotatorModel.currentAzimuth}, expected $azimuth");
     }
 
     if (elevationDiff >= threshold) {
       await RotatePanTiltCommand().run(RotatorAction.up, degree: elevationDiff);
-      debugPrint(
-          "Moved elevation up $elevationDiff to ${rotatorModel.currentElevation}, expected $elevation");
+      debugPrint("Moved elevation up $elevationDiff to ${rotatorModel.currentElevation}, expected $elevation");
     } else if (elevationDiff <= -threshold) {
-      await RotatePanTiltCommand()
-          .run(RotatorAction.down, degree: -elevationDiff);
-      debugPrint(
-          "Moved elevation down ${-elevationDiff} to ${rotatorModel.currentElevation}, expected $elevation");
+      await RotatePanTiltCommand().run(RotatorAction.down, degree: -elevationDiff);
+      debugPrint("Moved elevation down ${-elevationDiff} to ${rotatorModel.currentElevation}, expected $elevation");
     }
   }
 }

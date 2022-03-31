@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `Back to Origin`
+  /// `To Origin`
   String get gotoOrigin {
     return Intl.message(
-      'Back to Origin',
+      'To Origin',
       name: 'gotoOrigin',
       desc: '',
       args: [],

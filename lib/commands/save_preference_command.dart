@@ -13,8 +13,8 @@ class SavePreferenceCommand extends BaseCommand {
     prefs.setInt(PreferenceKeys.verticalSpeed, rotatorModel.verticalSpeed);
     prefs.setInt(PreferenceKeys.rotatorAddr, rotatorModel.rotatorAddr);
     prefs.setInt(PreferenceKeys.baudRate, rotatorModel.baudRate);
-    prefs.setDouble(PreferenceKeys.currentAzimuth, rotatorModel.currentAzimuth);
-    prefs.setDouble(PreferenceKeys.currentElevation, rotatorModel.currentElevation);
+    prefs.setInt(PreferenceKeys.currentAzimuth, rotatorModel.currentAzimuth);
+    prefs.setInt(PreferenceKeys.currentElevation, rotatorModel.currentElevation);
     prefs.setInt(PreferenceKeys.tcpPort, tcpServerModel.port);
   }
 }
