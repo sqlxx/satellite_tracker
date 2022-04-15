@@ -1,7 +1,7 @@
 import 'package:satellite_tracker/_utils/easy_notifier.dart';
 
 class TcpServerModel extends EasyNotifier {
-  int _port = 8090;
+  int _port = 9900;
   bool _serving = false;
   String _statusText = '';
 
